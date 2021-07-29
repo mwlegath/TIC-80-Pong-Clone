@@ -31,9 +31,9 @@ Ball = {
 		y = 60,
 	},
 	spriteNum = 02,
-  dx = math.random(1, 100),
-	dy = math.random(1, 50),
-	speed = 0.05
+  dx = math.random(1, 215),
+	dy = math.random(1, 215),
+	speed = 0.09
 }
 
 function TIC() --game loop
@@ -43,16 +43,13 @@ function TIC() --game loop
 	movePlrTwo()
 	drawPlrTwo()
 	drawBall()
-	bounce()
 	ballMvmt()
+	bounce()
 	drawHalfCourt()
 
 
 end
 
-function check(x,y)
-  return mget(Ball.pos.x,Ball.pos.y)
-end
 
 
 function movePlrOne() --movement for player one
@@ -108,13 +105,18 @@ end
 
 
 
-function bounce()
-	if check(Ball.pos.x, Ball.pos.y)>122 or
-      check(Ball.pos.x, Ball.pos.y)>122 then
-      Ball.dy =-Ball.dy * Ball.speed
-      Ball.dx =-Ball.dx * Ball.speed
+function bounce() --ball bounce
+	if Ball.pos.y >= 122 then
+    Ball.dy = -Ball.dy * Ball.speed
+		Ball.dx = -Ball.dx * Ball.speed
+  end
+	if Ball.pos.y <= 0 then
+    Ball.dy = Ball.dy * Ball.speed
+		Ball.dx = Ball.dx * Ball.speed
   end
 end
+
+
 
 
 
